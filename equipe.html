@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PSG — Équipe</title>
+
+<link rel="stylesheet" href="style.css">
+<style>
+.team-wrap{width:90%;max-width:1100px;margin:50px auto 100px}
+.coach{display:flex;align-items:center;gap:28px;text-align:left;padding:26px 34px;background:rgba(0,20,40,.7);border:1px solid rgba(224,185,85,.35);border-radius:22px}
+.coach .avatar{flex:none;width:110px;height:110px;border-radius:50%}
+.coach h3{font:600 30px "Oswald",Arial,sans-serif;text-transform:uppercase}
+.coach p{margin-top:6px;color:rgba(255,255,255,.75)}
+.section-title{margin:44px 0 20px;text-align:left;font:600 34px "Oswald",Arial,sans-serif;text-transform:uppercase}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:22px}
+.player{overflow:hidden;background:linear-gradient(160deg,rgba(0,55,95,.7),rgba(0,15,31,.85));border:1px solid rgba(255,255,255,.12);border-radius:20px;box-shadow:0 20px 45px rgba(0,0,0,.4);transition:transform .3s}
+.player:hover{transform:translateY(-6px)}
+.avatar{position:relative;overflow:hidden;display:grid;place-items:center;background:radial-gradient(circle at 50% 30%,#0a4a7c,#00162b)}
+.player .avatar{aspect-ratio:4/5}
+.avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top}
+.avatar span{font:700 80px "Oswald",Arial,sans-serif;color:rgba(255,255,255,.15)}
+.coach .avatar span{font-size:34px}
+.info{padding:16px 14px 20px}
+.info .n{font:600 13px "Oswald",Arial,sans-serif;letter-spacing:2px;color:#e0b955}
+.info h3{margin-top:4px;font:600 21px/1.2 "Oswald",Arial,sans-serif;text-transform:uppercase}
+.info p{margin-top:4px;font-size:14px;color:rgba(255,255,255,.65)}
+.note{margin-top:40px;font-size:13px;color:rgba(255,255,255,.5)}
+@media(max-width:768px){.coach{flex-direction:column;text-align:center}.grid{grid-template-columns:repeat(2,1fr);gap:14px}}
+@media(max-width:400px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<section class="top-info">
+    <p>
+        <a href="https://www.psg.fr"
+           target="_blank"
+           rel="noopener noreferrer"
+           title="Visiter le site officiel du Paris-Saint-Germain">
+            Site officiel du Paris-Saint-Germain
+        </a>
+    </p>
+</section>
+
+<div class="layout">
+
+    <nav class="sidebar" id="sidebar">
+
+        <div class="sidebar-title" tabindex="0">
+            <svg class="ico" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            <span class="label">Menu</span>
+        </div>
+
+        <a href="index.html">
+            <svg class="ico" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            <span class="label">Accueil</span>
+        </a>
+
+        <a href="histoire.html">
+            <svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span class="label">Histoire</span>
+        </a>
+
+        <a href="palmares.html">
+            <svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+            <span class="label">Palmarès</span>
+        </a>
+
+        <a href="equipe.html" class="active">
+            <svg class="ico" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span class="label">Équipe</span>
+        </a>
+
+    </nav>
+
+    <div class="content" id="content">
+
+        <header>
+            <h1>L'équipe du PSG</h1>
+            <div class="stars">★ ★</div>
+        </header>
+
+        <main class="team-wrap">
+            <div class="coach"><div class="avatar"><span>LE</span><img src="https://i.pinimg.com/1200x/71/b0/00/71b000fc8b558184a46a827be5e29817.jpg" alt="Luis Enrique" width="400" height="500" loading="lazy" onerror="this.remove()"></div><div><h3>Luis Enrique</h3><p>Entraîneur · Espagne</p></div></div>
+
+            <h2 class="section-title">Gardiens</h2>
+            <div class="grid">
+                <article class="player">
+                    <div class="avatar"><span>30</span><img src="https://i.pinimg.com/736x/c1/cf/1c/c1cf1cbd6ca6ad74f4b8a174b69d0e68.jpg" alt="Lucas Chevalier" width="400" height="500" loading="lazy" onerror="this.remove()"></div>
+                    <div class="info"><div class="n">N° 30</div><h3>Lucas Chevalier</h3><p>Gardien · France</p></div>
+                </article>
+                <article class="player">
+                    <div class="avatar"><span>39</span><img src="https://i.pinimg.com/736x/52/80/90/528090766361849a944b19ad35cffa6d.jpg" alt="Matvey Safonov" width="400" height="500" loading="lazy" onerror="this.remove()"></div>
+                    <div class="info"><div class="n">N° 39</div><h3>Matvey Safonov</h3><p>Gardien · Russie</p></div>
+                </article>
+                <article class="player">
+                    <div class="avatar"><span>AL</span><img src="https://i.pinimg.com/736x/ae/73/c1/ae73c10ab800e73086f733b4e460d08f.jpg" alt="Alessandro Longoni" width="400" height="500" loading="lazy" onerror="this.remove()"></div>
+                    <div class="info"><div class="n">Recrue 2026</div><h3>Alessandro Longoni</h3><p>Gardien · Italie</p></div>
+                </article>
+            </div>
+
+            <h2 class="section-title">Défenseurs</h2>
+            <div class="grid">
+                <article class="player">
+                    <div class="avatar"><span>2</span><img src="https://i.pinimg.com/736x/b3/38/1a/b3381a2ada1b44cfc16b81f0c8f45fda.jpg" alt="Achraf Hakimi" width="400" height="500" loading="lazy" onerror="this.remove()"></div>
+                    <div class="info"><div class="n">N° 2</div><h3>Achraf Hakimi</h3><p>Latéral droit · Maroc</p></div>
+                </article>
+                <article class="player">
+                    <div class="avatar"><span>5</span><img src="https://i.pinimg.com/736x/bc/59/c8/bc59c80b5cc99c271edb8982668b762b.jpg" alt="Marquinhos" width="400" height="500" loading="lazy" onerror="this.remove()"></div>
+                    <div class="info"><div class="n">N° 5</div><h3>Marquinhos</h3><p>Défenseur central · Brésil</p></div>
+                </article>
+                <article class="player">
+                    <div class="avatar"><span>51</span><img src="https://i.pinimg.com/736x/d1/ad/e4/d1ade4bbb5a547a4ac675a26a15f97fe.jpg" alt="Willian Pacho" width="400" height="500" loading="lazy" onerror="this.remove()"></div>
+                    <div class="info"><div class="n">N° 51</div><h3>Willian Pacho</h3><p>Défenseur central · Équateur</p></div>
+                </article>
+                <article class="player">
+                    <div class="avatar"><span>6</span><img src="https://i.pinimg.com/736x/5f/43/42/5f43426f538d4e8231e867c2703fb2fc.jpg" alt="Ilya Zabarnyi" width="400" height="500" loading="lazy" onerror="this.remove()"></div>
+                    <div class="info"><div class="n">N° 6</div><h3>Ilya Zabarnyi</h3><p>Défenseur central · Ukraine</p></div>
+                </article>
+                <article class="player">
+                    <div class="avatar"><span>4</span><img src="https://i.pinimg.com/736x/e9/dd/d6/e9ddd64a161786e83688268f3de4957a.jpg" alt="Lucas Beraldo" width="400" height="500" loading="lazy" onerror="this.remove()"></div>
+                    <div class="info"><div class="n">N° 4</div><h3>Lucas Beraldo</h3><p>Défenseur · Brésil</p></div>
+                </article>
+                <article class="player">
+                    <div class="avatar"><span>21</span><img src="https://i.pinimg.com/736x/99/aa/d0/99aad094eba32c672c55c4f3ae76e2c8.jpg" alt="Lucas Hernández" width="400" height="500" loading="lazy" onerror="this.remove()"></div>
+                    <div class="info"><div class="n">N° 21</div><h3>Lucas Hernández</h3><p>Défenseur · France</p></div>
+                </article>
+                <article class="player">
+                    <div class="avatar"><span>25</span><img src="https://i.pinimg.com/736x/34/ee/0a/34ee0a694025d4fb551d7bbfb9b0464c.jpg" alt="Nuno Mendes" width="400" height="500" loading="lazy" onerror="this.remove()"></div>
+                    <div class="info"><div class="n">N° 25</div><h3>Nuno Mendes</h3><p>Latéral gauche · Portugal</p></div>
+                </article>
+                <article class="player">
+                    <div class="avatar"><span>LD</span><img src="https://i.pinimg.com/736x/ea/6c/aa/ea6caad33e3f1862f19b99243dcc5253.jpg" alt="Lucas Digne" width="400" height="500" loading="lazy" onerror="this.remove()"></div>
+                    <div class="info"><div class="n">Recrue 2026</div><h3>Lucas Digne</h3><p>Latéral gauche · France</p></div>
+                </article>
+            </div>
+
+            <h2 class="section-title">Milieux</h2>
+            <div class="grid">
+                <article class="player">
+                    <div class="avatar"><span>17</span><img src="https://i.pinimg.com/736x/55/2a/1a/552a1a88eac1941ab57d5279cd799604.jpg" alt="Vitinha" width="400" height="500" loading="lazy" onerror="this.remove()"></div>
+                    <div class="info"><div class="n">N° 17</div><h3>Vitinha</h3><p>Milieu · Portugal</p></div>
+                </article>
+                <article class="player">
+                    <div class="avatar"><span>87</span><img src="https://i.pinimg.com/736x/c6/7c/5d/c67c5d9c72329479a289c24bdd828ee1.jpg" alt="João Neves" width="400" height="500" loading="lazy" onerror="this.remove()"></div>
+                    <div class="info"><div class="n">N° 87</div><h3>João Neves</h3><p>Milieu · Portugal</p></div>
+                </article>
+                <article class="player">
+                    <div class="avatar"><span>8</span><img src="https://i.pinimg.com/736x/cb/b3/cb/cbb3cbab4455c2c8984d9398cd558d91.jpg" alt="Fabián Ruiz" width="400" height="500" loading="lazy" onerror="this.remove()"></div>
+                    <div class="info"><div class="n">N° 8</div><h3>Fabián Ruiz</h3><p>Milieu · Espagne</p></div>
+                </article>
+                <article class="player">
+                    <div class="avatar"><span>33</span><img src="https://i.pinimg.com/736x/58/fb/7e/58fb7ef6ab80a517244cb07976e11d3d.jpg" alt="Warren Zaïre-Emery" width="400" height="500" loading="lazy" onerror="this.remove()"></div>
+                    <div class="info"><div class="n">N° 33</div><h3>Warren Zaïre-Emery</h3><p>Milieu · France</p></div>
+                </article>
+                <article class="player">
+                    <div class="avatar"><span>24</span><img src="https://i.pinimg.com/736x/c7/80/d7/c780d7f861ec6a71245c31d530681816.jpg" alt="Senny Mayulu" width="400" height="500" loading="lazy" onerror="this.remove()"></div>
+                    <div class="info"><div class="n">N° 24</div><h3>Senny Mayulu</h3><p>Milieu · France</p></div>
+                </article>
+                <article class="player">
+                    <div class="avatar"><span>MA</span><img src="https://i.pinimg.com/736x/65/53/c1/6553c1fab613ec16d3220206d52da18d.jpg" alt="Maghnes Akliouche" width="400" height="500" loading="lazy" onerror="this.remove()"></div>
+                    <div class="info"><div class="n">Recrue 2026</div><h3>Maghnes Akliouche</h3><p>Milieu offensif · France</p></div>
+                </article>
+            </div>
+
+            <h2 class="section-title">Attaquants</h2>
+            <div class="grid">
+                <article class="player">
+                    <div class="avatar"><span>10</span><img src="https://i.pinimg.com/736x/ac/7d/c2/ac7dc2ff1fad3dc848cd2992df64b547.jpg" alt="Ousmane Dembélé" width="400" height="500" loading="lazy" onerror="this.remove()"></div>
+                    <div class="info"><div class="n">N° 10</div><h3>Ousmane Dembélé</h3><p>Attaquant · France</p></div>
+                </article>
+                <article class="player">
+                    <div class="avatar"><span>14</span><img src="https://i.pinimg.com/736x/d5/40/7c/d5407c97f40216ccfc07aa14de24e81b.jpg" alt="Désiré Doué" width="400" height="500" loading="lazy" onerror="this.remove()"></div>
+                    <div class="info"><div class="n">N° 14</div><h3>Désiré Doué</h3><p>Ailier · France</p></div>
+                </article>
+                <article class="player">
+                    <div class="avatar"><span>7</span><img src="https://i.pinimg.com/736x/a8/6a/99/a86a99af5b5517b25e6ca1b5833bbd7e.jpg" alt="Khvicha Kvaratskhelia" width="400" height="500" loading="lazy" onerror="this.remove()"></div>
+                    <div class="info"><div class="n">N° 7</div><h3>Khvicha Kvaratskhelia</h3><p>Ailier · Géorgie</p></div>
+                </article>
+                <article class="player">
+                    <div class="avatar"><span>FT</span><img src="https://i.pinimg.com/1200x/5a/76/ff/5a76fffc13a77094bdee908deb866e39.jpg" alt="Ferran Torres" width="400" height="500" loading="lazy" onerror="this.remove()"></div>
+                    <div class="info"><div class="n">Recrue 2026</div><h3>Ferran Torres</h3><p>Attaquant · Espagne</p></div>
+                </article>
+                <article class="player">
+                    <div class="avatar"><span>MG</span><img src="https://i.pinimg.com/736x/f4/5b/a3/f45ba362112dcaa952aa6dffdc44cdd2.jpg" alt="Mika Godts" width="400" height="500" loading="lazy" onerror="this.remove()"></div>
+                    <div class="info"><div class="n">Recrue 2026</div><h3>Mika Godts</h3><p>Attaquant · Belgique</p></div>
+                </article>
+            </div>
+
+            <p class="note">Effectif mis à jour après le mercato d'été 2026 (départs : Barcola, Ramos, Mbaye, Kolo Muani, Lee). Source : psg.fr.</p>
+        </main>
+
+    </div>
+
+</div>
+
+</body>
+</html>

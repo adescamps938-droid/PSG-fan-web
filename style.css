@@ -1,0 +1,981 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap");
+
+:root {
+    --blue: #004170;
+    --blue-dark: #001a33;
+    --blue-deep: #000b18;
+    --red: #da291c;
+    --gold: #e0b955;
+    --white: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Inter", Arial, sans-serif;
+    color: white;
+    text-align: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+
+    background:
+        radial-gradient(circle at 70% 10%, rgba(0, 65, 112, 0.30), transparent 35%),
+        linear-gradient(135deg, #001a30, #000b18 60%, #001b32);
+
+    background-attachment: fixed;
+}
+
+/* ===== Images de fond selon la page ===== */
+
+body:has(.history)::before,
+body:has(.trophies-container)::before,
+body:not(:has(.history)):not(:has(.trophies-container))::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    transform: scale(1.02);
+    opacity: 0.95;
+}
+
+body:has(.history)::before {
+    background-image:
+        linear-gradient(rgba(0, 12, 28, 0.45), rgba(0, 12, 28, 0.82)),
+        url("https://i.pinimg.com/1200x/3b/48/53/3b4853af135a028765f686021bd2f3c1.jpg");
+}
+
+body:has(.trophies-container)::before {
+    background-image:
+        linear-gradient(rgba(0, 12, 28, 0.42), rgba(0, 12, 28, 0.84)),
+        url("https://i.pinimg.com/736x/1a/2c/73/1a2c73fe2fdc673cc5dcf3723f411132.jpg");
+}
+
+body:not(:has(.history)):not(:has(.trophies-container))::before {
+    background-image:
+        linear-gradient(rgba(0, 12, 28, 0.38), rgba(0, 12, 28, 0.78)),
+        url("https://i.pinimg.com/1200x/1e/55/23/1e55238cba7055d1d9cf207e1da20c17.jpg");
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+
+    background: radial-gradient(circle at 50% 20%, rgba(0, 80, 140, 0.18), transparent 45%);
+}
+
+/* ===== Bandeau du haut ===== */
+
+.top-info {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 58px;
+    z-index: 100;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 10, 24, 0.82);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.30);
+
+    font-family: "Inter", Arial, sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    color: rgba(255, 255, 255, 0.70);
+}
+
+.top-info a {
+    margin-left: 5px;
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: 700;
+    transition: color 0.25s ease, text-shadow 0.25s ease;
+}
+
+.top-info a:hover {
+    color: white;
+    text-shadow: 0 0 15px rgba(224, 185, 85, 0.7);
+}
+
+/* ===== Mise en page ===== */
+
+.layout {
+    display: flex;
+    min-height: 100vh;
+    padding-top: 58px;
+}
+
+.content {
+    flex: 1;
+    min-width: 0;
+    margin-left: 76px;
+}
+
+/* ===== Menu latéral : s'ouvre au survol ===== */
+
+.sidebar {
+    position: fixed;
+    top: 58px;
+    left: 0;
+    width: 76px;
+    height: calc(100vh - 58px);
+    padding: 24px 12px;
+    z-index: 90;
+    overflow: hidden;
+    white-space: nowrap;
+
+    background: linear-gradient(180deg, rgba(0, 30, 58, 0.92), rgba(0, 10, 24, 0.95));
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-right: 1px solid rgba(255, 255, 255, 0.10);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+
+    transition:
+        width 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow 0.35s ease;
+}
+
+.sidebar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 3px;
+    height: 100%;
+
+    background: linear-gradient(180deg, transparent, var(--red), transparent);
+    opacity: 0.8;
+}
+
+.sidebar:hover,
+.sidebar:focus-within {
+    width: 260px;
+    box-shadow: 20px 0 60px rgba(0, 0, 0, 0.45);
+}
+
+.sidebar-title {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    height: 50px;
+    padding: 0 14px;
+    margin-bottom: 18px;
+    outline: none;
+
+    font-family: "Oswald", Arial, sans-serif;
+    font-size: 24px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: left;
+    color: var(--gold);
+    border-bottom: 1px solid rgba(224, 185, 85, 0.3);
+}
+
+.sidebar .ico {
+    flex: none;
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.sidebar .label {
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: opacity 0.25s ease, transform 0.35s ease;
+}
+
+.sidebar:hover .label,
+.sidebar:focus-within .label {
+    opacity: 1;
+    transform: none;
+    transition-delay: 0.08s;
+}
+
+.sidebar a {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    height: 50px;
+    padding: 0 14px;
+    margin-bottom: 8px;
+
+    font-family: "Inter", Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: left;
+    color: rgba(255, 255, 255, 0.65);
+    text-decoration: none;
+
+    border-radius: 14px;
+    transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+
+.sidebar a:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.09);
+    transform: translateX(3px);
+}
+
+.sidebar a.active {
+    color: white;
+    background: linear-gradient(90deg, rgba(218, 41, 28, 0.95), rgba(218, 41, 28, 0.5));
+    box-shadow: 0 8px 22px rgba(218, 41, 28, 0.30);
+}
+
+/* ===== En-tête ===== */
+
+header {
+    position: relative;
+    padding: 100px 20px 60px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background: linear-gradient(180deg, rgba(0, 65, 112, 0.20), transparent);
+    overflow: hidden;
+}
+
+header::before {
+    content: "";
+    position: absolute;
+    top: -150px;
+    left: 50%;
+
+    width: 500px;
+    height: 300px;
+
+    transform: translateX(-50%);
+    background: radial-gradient(ellipse, rgba(0, 100, 180, 0.20), transparent 70%);
+    pointer-events: none;
+}
+
+h1 {
+    position: relative;
+
+    font-family: "Oswald", Arial, sans-serif;
+    font-size: clamp(48px, 7vw, 80px);
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    line-height: 1;
+    color: white;
+    text-shadow: 0 15px 35px rgba(0, 0, 0, 0.60);
+}
+
+h1::after {
+    content: "";
+    display: block;
+
+    width: 80px;
+    height: 4px;
+    margin: 25px auto 0;
+    border-radius: 10px;
+
+    background: linear-gradient(90deg, var(--blue), var(--red));
+    box-shadow: 0 0 20px rgba(218, 41, 28, 0.25);
+}
+
+.stars {
+    margin-top: 28px;
+    font-size: 28px;
+    letter-spacing: 12px;
+    color: var(--gold);
+    text-shadow: 0 0 15px rgba(224, 185, 85, 0.55);
+    animation: briller 2s ease-in-out infinite alternate;
+}
+
+@keyframes briller {
+    from { opacity: 0.6; }
+    to { opacity: 1; }
+}
+
+/* ===== Photo d'accueil ===== */
+
+.photo {
+    display: flex;
+    justify-content: center;
+    margin: 65px auto 55px;
+    padding: 0 20px;
+}
+
+.photo img {
+    width: 550px;
+    max-width: 90%;
+    height: auto;
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 22px;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.60);
+
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.photo img:hover {
+    transform: translateY(-8px) scale(1.015);
+    box-shadow: 0 40px 90px rgba(0, 0, 0, 0.65);
+}
+
+main {
+    position: relative;
+}
+
+/* ===== Blocs de texte ===== */
+
+.history {
+    position: relative;
+    z-index: 1;
+
+    width: 85%;
+    max-width: 900px;
+    margin: 45px auto;
+    padding: 42px 48px;
+
+    text-align: left;
+
+    background: rgba(0, 20, 40, 0.68);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 22px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.40);
+
+    overflow: hidden;
+
+    transition: transform 0.35s ease, border-color 0.35s ease, background 0.35s ease;
+}
+
+.history::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+
+    background: linear-gradient(90deg, transparent, var(--red), var(--blue), transparent);
+}
+
+.history:last-child {
+    margin-bottom: 100px;
+}
+
+.history:hover {
+    transform: translateY(-7px);
+    background: rgba(0, 25, 48, 0.76);
+    border-color: rgba(224, 185, 85, 0.30);
+}
+
+.history h2 {
+    margin-bottom: 22px;
+
+    font-family: "Oswald", Arial, sans-serif;
+    font-size: 36px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: white;
+}
+
+.history h2::after {
+    content: "";
+    display: block;
+
+    width: 55px;
+    height: 3px;
+    margin-top: 12px;
+
+    background: linear-gradient(90deg, var(--red), var(--gold));
+    border-radius: 10px;
+}
+
+.history p {
+    margin-bottom: 18px;
+
+    font-size: 18px;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.78);
+}
+
+/* ===== Bloc histoire + chronologie ===== */
+
+.history-block {
+    display: grid;
+    grid-template-columns: 1.7fr 1fr;
+    gap: 50px;
+    align-items: start;
+
+    width: 90%;
+    max-width: 1150px;
+}
+
+.history-block .history-text p {
+    text-align: justify;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    margin-bottom: 0;
+}
+
+.history-text h3 {
+    margin: 32px 0 12px;
+
+    font-family: "Oswald", Arial, sans-serif;
+    font-size: 21px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--gold);
+}
+
+.history-text h2 + h3 {
+    margin-top: 0;
+}
+
+.timeline {
+    padding-left: 35px;
+    border-left: 1px solid rgba(224, 185, 85, 0.25);
+}
+
+.timeline h3 {
+    margin-bottom: 28px;
+
+    font-family: "Oswald", Arial, sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--gold);
+}
+
+.timeline ul {
+    position: relative;
+    list-style: none;
+    padding-left: 28px;
+
+    border-left: 3px solid transparent;
+    border-image: linear-gradient(180deg, var(--red), var(--blue)) 1;
+}
+
+.timeline li {
+    position: relative;
+    padding-bottom: 28px;
+}
+
+.timeline li:last-child {
+    padding-bottom: 0;
+}
+
+.timeline li::before {
+    content: "";
+    position: absolute;
+    left: -39px;
+    top: 5px;
+
+    width: 14px;
+    height: 14px;
+
+    background: var(--red);
+    border: 3px solid var(--blue-dark);
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px var(--gold), 0 0 14px rgba(218, 41, 28, 0.5);
+
+    transition: transform 0.3s ease;
+}
+
+.timeline li:hover::before {
+    transform: scale(1.3);
+}
+
+.timeline .year {
+    display: block;
+
+    font-family: "Oswald", Arial, sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    color: var(--gold);
+}
+
+.timeline .event {
+    display: block;
+    margin-top: 4px;
+
+    font-size: 15px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.78);
+}
+
+/* Dates clés : fondation, arrivée de QSI, Ligue des champions */
+.timeline li.key::before {
+    background: var(--gold);
+    border-color: var(--red);
+    transform: scale(1.25);
+    box-shadow: 0 0 0 2px var(--gold), 0 0 18px rgba(224, 185, 85, 0.65);
+}
+
+.timeline li.key .year {
+    color: white;
+    font-size: 26px;
+}
+
+.timeline li.key .event {
+    font-weight: 600;
+    color: white;
+}
+
+.timeline li img {
+    display: block;
+    width: 100%;
+    max-width: 220px;
+    height: auto;
+    margin-top: 10px;
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+}
+
+/* ===== Palmarès ===== */
+
+.trophies-container {
+    display: grid;
+    gap: 25px;
+
+    width: 88%;
+    max-width: 1000px;
+    margin: 60px auto 100px;
+}
+
+.trophy-card {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    gap: 35px;
+    padding: 30px 40px;
+
+    text-align: left;
+
+    background: linear-gradient(135deg, rgba(0, 55, 95, 0.65), rgba(0, 15, 31, 0.78));
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 22px;
+    box-shadow: 0 25px 55px rgba(0, 0, 0, 0.40);
+
+    overflow: hidden;
+
+    transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.trophy-card::before {
+    content: "";
+    position: absolute;
+    top: 25px;
+    bottom: 25px;
+    left: 0;
+    width: 3px;
+
+    border-radius: 0 10px 10px 0;
+    background: linear-gradient(180deg, var(--red), var(--blue));
+}
+
+.trophy-card:hover {
+    transform: translateY(-7px);
+    border-color: rgba(224, 185, 85, 0.35);
+    box-shadow: 0 35px 75px rgba(0, 0, 0, 0.50);
+}
+
+.trophy-card img {
+    position: relative;
+    z-index: 2;
+
+    width: 145px;
+    height: 145px;
+    padding: 14px;
+
+    object-fit: contain;
+    border-radius: 50%;
+
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.02) 70%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    filter: drop-shadow(0 15px 18px rgba(0, 0, 0, 0.60));
+
+    transition: transform 0.4s ease;
+}
+
+.trophy-card:hover img {
+    transform: scale(1.08) rotate(2deg);
+}
+
+.trophy-info {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+}
+
+.trophy-info h2 {
+    font-family: "Oswald", Arial, sans-serif;
+    font-size: 34px;
+    font-weight: 600;
+
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 1.1;
+    color: white;
+}
+
+.years {
+    margin: 14px 0;
+    padding: 10px 0;
+
+    border-top: 1px solid rgba(224, 185, 85, 0.35);
+    border-bottom: 1px solid rgba(224, 185, 85, 0.35);
+
+    font-family: "Oswald", Arial, sans-serif;
+    font-size: 16px;
+    letter-spacing: 1.5px;
+    line-height: 1.6;
+    color: var(--gold);
+}
+
+.trophy-info p {
+    font-size: 17px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.trophy-card:first-child {
+    border-color: rgba(224, 185, 85, 0.35);
+    background: linear-gradient(135deg, rgba(70, 55, 15, 0.28), rgba(0, 15, 30, 0.80));
+}
+
+.trophy-card:first-child h2 {
+    color: var(--gold);
+}
+
+.trophy-card:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.trophy-card:nth-child(even)::before {
+    left: auto;
+    right: 0;
+}
+
+/* ===== Vidéo ===== */
+
+.video-section {
+    position: relative;
+    z-index: 1;
+
+    width: 85%;
+    max-width: 1000px;
+    margin: 45px auto 100px;
+    padding: 42px 48px;
+
+    text-align: left;
+
+    background: rgba(0, 20, 40, 0.68);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 22px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.40);
+
+    overflow: hidden;
+
+    transition: transform 0.35s ease, border-color 0.35s ease, background 0.35s ease;
+}
+
+.video-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+
+    background: linear-gradient(90deg, transparent, var(--red), var(--blue), transparent);
+}
+
+.video-section:hover {
+    transform: translateY(-7px);
+    background: rgba(0, 25, 48, 0.76);
+    border-color: rgba(224, 185, 85, 0.30);
+}
+
+.video-section h2 {
+    margin-bottom: 22px;
+
+    font-family: "Oswald", Arial, sans-serif;
+    font-size: 26px;
+    font-weight: 600;
+
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 1.2;
+    color: white;
+}
+
+.video-section h2::after {
+    content: "";
+    display: block;
+
+    width: 55px;
+    height: 3px;
+    margin-top: 12px;
+
+    background: linear-gradient(90deg, var(--red), var(--gold));
+    border-radius: 10px;
+}
+
+.video-wrapper {
+    width: 100%;
+    overflow: hidden;
+
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: #000;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.50);
+}
+
+.video-wrapper iframe {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 0;
+}
+
+/* ===== Scrollbar ===== */
+
+::-webkit-scrollbar {
+    width: 9px;
+}
+
+::-webkit-scrollbar-track {
+    background: #000b18;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--red), var(--blue));
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--red);
+}
+
+/* ===== Responsive ===== */
+
+@media (max-width: 900px) {
+
+    .trophy-card {
+        gap: 25px;
+        padding: 28px;
+    }
+
+    .trophy-card img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .trophy-info h2 {
+        font-size: 29px;
+    }
+
+    /* La chronologie passe sous le texte */
+    .history-block {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .timeline {
+        padding-left: 0;
+        padding-top: 30px;
+        border-left: none;
+        border-top: 1px solid rgba(224, 185, 85, 0.25);
+    }
+}
+
+@media (max-width: 768px) {
+
+    .content {
+        margin-left: 64px;
+    }
+
+    .top-info {
+        height: 52px;
+        font-size: 13px;
+    }
+
+    .layout {
+        padding-top: 52px;
+    }
+
+    .sidebar {
+        top: 52px;
+        width: 64px;
+        height: calc(100vh - 52px);
+        padding: 20px 7px;
+    }
+
+    .sidebar:hover,
+    .sidebar:focus-within {
+        width: 230px;
+    }
+
+    header {
+        padding: 80px 20px 55px;
+    }
+
+    h1 {
+        font-size: 48px;
+        line-height: 1.05;
+    }
+
+    .stars {
+        font-size: 24px;
+        letter-spacing: 8px;
+    }
+
+    .photo {
+        margin: 45px auto;
+    }
+
+    .photo img {
+        border-radius: 18px;
+    }
+
+    .history,
+    .history.history-block {
+        width: 92%;
+        padding: 32px 25px;
+    }
+
+    .history h2 {
+        font-size: 30px;
+    }
+
+    .history p {
+        font-size: 16px;
+        line-height: 1.7;
+    }
+
+    /* Le texte justifié fait de gros trous sur petit écran */
+    .history-block .history-text p {
+        text-align: left;
+    }
+
+    .trophies-container {
+        width: 92%;
+        margin-top: 40px;
+    }
+
+    .trophy-card,
+    .trophy-card:nth-child(even) {
+        flex-direction: column;
+        gap: 20px;
+        padding: 35px 20px 30px;
+        text-align: center;
+    }
+
+    .trophy-card::before,
+    .trophy-card:nth-child(even)::before {
+        top: 0;
+        left: 0;
+        right: auto;
+        bottom: auto;
+
+        width: 100%;
+        height: 3px;
+
+        border-radius: 0;
+        background: linear-gradient(90deg, var(--red), var(--blue));
+    }
+
+    .trophy-card img {
+        width: 125px;
+        height: 125px;
+    }
+
+    .trophy-info h2 {
+        font-size: 28px;
+    }
+
+    .years {
+        font-size: 14px;
+    }
+
+    .trophy-info p {
+        font-size: 15px;
+    }
+
+    .video-section {
+        width: 92%;
+        padding: 32px 25px;
+    }
+
+    .video-section h2 {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 450px) {
+
+    h1 {
+        font-size: 37px;
+    }
+
+    .stars {
+        font-size: 20px;
+    }
+
+    .history,
+    .history.history-block {
+        padding: 28px 20px;
+    }
+
+    .history h2 {
+        font-size: 25px;
+    }
+
+    .trophy-card {
+        padding: 32px 18px 25px;
+    }
+
+    .trophy-info h2 {
+        font-size: 24px;
+    }
+
+    .video-section {
+        padding: 28px 20px;
+    }
+
+    .video-section h2 {
+        font-size: 20px;
+    }
+}
